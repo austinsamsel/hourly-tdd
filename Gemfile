@@ -50,5 +50,10 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'spring-commands-rspec'
   gem 'ffaker'
+  gem 'shoulda-matchers'
+end
+
+group :development do
+  gem "better_errors"
 end
 

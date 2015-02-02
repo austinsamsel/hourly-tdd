@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
   end
 
   def create
-    @client = Client.new(client_params)
+    @client = current_user.clients.build(client_params)
     @client.save
     respond_with(@client)
   end
@@ -44,6 +44,6 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:name)
+      params.require(:client).permit(:name, :user_id)
     end
 end
