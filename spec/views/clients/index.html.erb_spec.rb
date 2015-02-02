@@ -3,11 +3,13 @@ require 'rails_helper'
 RSpec.describe "clients/index", :type => :view do
   before(:each) do
     assign(:clients, [
-      Client.create!(
-        :name => "Name"
+      Client.create(
+        :name => "Name",
+        :user_id => 1
       ),
-      Client.create!(
-        :name => "Name"
+      Client.create(
+        :name => "Name",
+        :user_id => 1
       )
     ])
   end

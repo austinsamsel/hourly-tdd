@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe "clients/edit", :type => :view do
   before(:each) do
     @client = assign(:client, Client.create!(
-      :name => "MyString"
+      :name => "MyString",
+      :user_id => "1"
     ))
   end
 
