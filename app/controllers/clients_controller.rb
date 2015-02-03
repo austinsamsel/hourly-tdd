@@ -6,7 +6,8 @@ class ClientsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @clients = Client.all
+    #@clients = Client.all
+    @clients = current_user.clients
     respond_with(@clients)
   end
 
