@@ -19,14 +19,20 @@ RSpec.describe ClientsController, :type => :controller do
       response.should be_success
     end
   end
+  
   describe "GET #index" do
-    it "lists user's clients" do
-      #current_user.clients.should be_true 
-      #current_user.clients.should be_true
-      login_with create( :user )
-      get :index
-      response.should be_success
+    before(:each) do
+      @current_user = :user
+      login_with (@current_user)
+      client =  Client.new( :name => 'one', :user_id => 1)
+      client2 = Client.new(:name=> 'two', :user_id=> 2)
     end
+    # it "lists only current_user's clients" do
+    #   FactoryGirl.create(:client)
+    #   @client = FactoryGirl.create(:client)
+    #   @client2 = FactoryGirl.create(:client)            
+    #   @current_user.clients << @client
+    #   get "index"
+    # end
   end
-
 end

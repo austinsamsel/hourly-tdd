@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'puma'
 gem 'rails_12factor'
+gem 'validates_timeliness', '~> 3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
