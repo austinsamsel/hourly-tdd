@@ -7,13 +7,31 @@ require 'rails_helper'
     # it { should belong_to(:user) }
 
 describe Client do
+  before :each do
+    @client = Client.new(
+      :name => "The Company", 
+      user_id: '1'
+    )
+  end
   it "is valid with a name." do
-     Client.new(:name => " ").should_not be_valid
+     expect(@client).to be_valid
+  end
+  it "is invalid without a name" do
+    client = Client.new(
+      :name => " "
+    )
+    client.valid?
+    expect(client.errors[:name]).to include("can't be blank")
+  end
+  it "is valid with a user reference" do
+     expect(@client).to be_valid
   end
   it "is invalid without a user reference" do
-    Client.new(:user_id => nil).should_not be_valid
+    client = Client.new(:user_id => nil)
+    client.valid?
+    expect(client.errors[:name]).to include("can't be blank")
   end
-  
+
 
   it { should belong_to(:user) }
 
