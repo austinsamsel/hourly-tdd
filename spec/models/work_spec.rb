@@ -82,5 +82,9 @@ RSpec.describe Work, :type => :model do
       description: nil,
       billed: false
     )
+    expect(work).to be_valid
+  end
+  it "is valid with hours elapsed" do
+    expect(@work.hours_elapsed).to eq 1
   end
 end
