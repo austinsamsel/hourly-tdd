@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :client do
-    name "MyString"
-    user_id "1"
+    name { Faker::Company.name }
+    user_id {rand(1..10)}
   end
-
 end
