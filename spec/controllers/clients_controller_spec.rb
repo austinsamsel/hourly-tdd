@@ -145,42 +145,64 @@ describe ClientsController do
     end
   end
 
-
-
-# previous stuff....
-
-  describe "anonymous user" do
+# GUEST USER
+  describe "guest user" do
     before :each do
       # This simulates an anonymous user
       login_with nil
     end
 
-    it "should be redirected to signin" do
-      get :index
-      expect( response ).to redirect_to( new_user_session_path )
+    describe "GET #new" do
+      it "requires login" do
+        get :new
+        expect(response).to redirect_to( new_user_session_path )
+      end
     end
 
-    it "should let a user see all the clients" do
-      login_with create( :user )
-      get :index
-      #expect( response ).to render_template( :index )
-      response.should be_success
+    describe "GET #edit" do
+      it "requires login" do
+        client = create(:client)
+        get :edit, id: client
+        expect(response).to redirect_to( new_user_session_path )
+      end
+    end
+
+    describe "GET #create" do
+      it "requires login" do
+        post :create, id: create(:client),
+          client: attributes_for(:client)
+        expect(response).to redirect_to( new_user_session_path )
+      end
+    end
+
+    describe "GET #update" do
+      it "requires login" do
+        patch :create, id: create(:client),
+          client: attributes_for(:client)
+        expect(response).to redirect_to( new_user_session_path )
+      end
+    end
+
+    describe "GET #destroy" do
+      it "requires login" do
+        delete :destroy, id: create(:client)
+        expect(response).to redirect_to( new_user_session_path )
+      end
+    end
+
+    describe "GET #index" do
+      it "requires login" do
+        get :index
+        expect(response).to redirect_to( new_user_session_path )
+      end
+    end
+
+    describe "GET #show" do
+      it "requires login" do
+        get :show, id: create(:client)
+        expect(response).to redirect_to( new_user_session_path )
+      end
     end
   end
-  
-  describe "GET #index" do
-    before(:each) do
-      @current_user = :user
-      login_with (@current_user)
-      client =  Client.new( :name => 'one', :user_id => 1)
-      client2 = Client.new(:name=> 'two', :user_id=> 2)
-    end
-    # it "lists only current_user's clients" do
-    #   FactoryGirl.create(:client)
-    #   @client = FactoryGirl.create(:client)
-    #   @client2 = FactoryGirl.create(:client)            
-    #   @current_user.clients << @client
-    #   get "index"
-    # end
-  end
+
 end
