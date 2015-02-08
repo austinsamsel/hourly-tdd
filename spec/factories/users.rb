@@ -9,13 +9,10 @@ FactoryGirl.define do
     email
     password '12345678'
     password_confirmation '12345678'
-  end
-end
+    id 1
 
-FactoryGirl.define do
-  factory :bro, :class => 'User' do
-    email
-    password '12345678'
-    password_confirmation '12345678'
+    factory :another_guy do
+      id 2
+    end
   end
 end
