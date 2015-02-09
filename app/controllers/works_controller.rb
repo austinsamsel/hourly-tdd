@@ -1,10 +1,14 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :edit, :update, :destroy]
 
+  before_action :load_clients, only: [:new, :edit, :create, :update]
+
   respond_to :html
 
+  before_action :authenticate_user!
+
   def index
-    @works = Work.all
+    @works = current_user.works
     respond_with(@works)
   end
 
@@ -21,7 +25,7 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = Work.new(work_params)
+    @work = current_user.works.build(work_params)
     @work.save
     respond_with(@work)
   end
@@ -42,6 +46,11 @@ class WorksController < ApplicationController
     end
 
     def work_params
-      params.require(:work).permit(:start_time, :end_time, :title, :description, :billed)
+      params.require(:work).permit(:start_time, :end_time, :title, :description, :billed, :client_id)
     end
+
+    def load_clients
+      @clients = current_user.clients.collect {|client| [client.name, client.id]}
+    end
+
 end

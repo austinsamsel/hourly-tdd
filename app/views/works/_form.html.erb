@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%# f.label :client %><br>
+    <%= f.select :client_id, @clients %>
+  </div>
+
+  <div class="field">
     <%= f.label :start_time %><br>
     <%= f.datetime_select :start_time %>
   </div>

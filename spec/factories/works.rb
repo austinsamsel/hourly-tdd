@@ -5,6 +5,11 @@ FactoryGirl.define do
     title { Faker::Product.product_name }
     description { Faker::Lorem.sentence(3) }
     billed false
+    client_id {rand(1..10)}
+
+    factory :invalid_work do
+      start_time nil
+    end
   end
 
 end

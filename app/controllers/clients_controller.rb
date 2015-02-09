@@ -1,6 +1,8 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
+  #before_action :load_work, only: [:new, :show, :edit, :create, :update]
+
   respond_to :html
 
   before_action :authenticate_user!
@@ -12,6 +14,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @works = current_user.works
     respond_with(@client)
   end
 
@@ -47,4 +50,8 @@ class ClientsController < ApplicationController
     def client_params
       params.require(:client).permit(:name, :user_id)
     end
+
+    # def load_work
+    #   @works = current_user.works.collect {|work| [work.start_time, work.end_time, work.title, work.description, work.billed, work.client_id]}
+    # end
 end

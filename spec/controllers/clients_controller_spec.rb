@@ -155,7 +155,7 @@ describe ClientsController do
     describe "GET #new" do
       it "requires login" do
         get :new
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
 
@@ -163,7 +163,7 @@ describe ClientsController do
       it "requires login" do
         client = create(:client)
         get :edit, id: client
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
 
@@ -171,7 +171,7 @@ describe ClientsController do
       it "requires login" do
         post :create, id: create(:client),
           client: attributes_for(:client)
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
 
@@ -179,28 +179,28 @@ describe ClientsController do
       it "requires login" do
         patch :create, id: create(:client),
           client: attributes_for(:client)
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
 
     describe "GET #destroy" do
       it "requires login" do
         delete :destroy, id: create(:client)
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
 
     describe "GET #index" do
       it "requires login" do
         get :index
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
 
     describe "GET #show" do
       it "requires login" do
         get :show, id: create(:client)
-        expect(response).to redirect_to( new_user_session_path )
+        expect(response).to require_login
       end
     end
   end

@@ -1,5 +1,7 @@
 class Work < ActiveRecord::Base
 
+  belongs_to :client
+  belongs_to :user
   validates :title, presence: true
   validates_datetime :start_time
   validates_datetime :end_time, after: :start_time
