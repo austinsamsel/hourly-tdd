@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :works
+  
 
-  resources :clients
+  resources :clients do
+    resources :works
+  end
 
   devise_for :users
 

@@ -22,9 +22,9 @@
         <td><%= work.title %></td>
         <td><%= work.description %></td>
         <td><%= work.billed %></td>
-        <td><%= link_to 'Show', work %></td>
-        <td><%= link_to 'Edit', edit_work_path(work) %></td>
-        <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', [work.client, work] %></td>
+        <td><%= link_to 'Edit', edit_client_work_path(work.client, work) %></td>
+        <td><%= link_to 'Destroy', [work.client, work], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Work', new_work_path %>
+<%= link_to 'New Work',  new_client_work_path %>
