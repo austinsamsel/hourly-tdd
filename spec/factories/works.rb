@@ -6,6 +6,7 @@ FactoryGirl.define do
     description { Faker::Lorem.sentence(3) }
     billed false
     client_id {rand(1..10)}
+    association :client
 
     factory :invalid_work do
       start_time nil

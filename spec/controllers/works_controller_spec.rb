@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe WorksController do
+  before do
+    @client = create(:client) 
+    @work = create(:work, client: @client) 
+  end
 
   describe 'GET #index' do
     context 'user logs in to index' do
@@ -13,7 +17,7 @@ describe WorksController do
       # end
       it "renders the :index template" do
         login_with create( :user )
-        get :index
+        get :index, client_id: @client.id
         expect(response).to render_template :index
       end
     end
@@ -22,13 +26,13 @@ describe WorksController do
   describe 'GET #show' do
     it "assigns the requested work to @work" do
       work = create(:work)
-      get :show, id: work
+      get :show, id: work, client_id: @client.id
       expect(assigns(:work)).to eq work
     end
     it "renders the :show template" do
       login_with create( :user )
       work = create(:work)
-      get :show, id: work
+      get :show, id: work, client_id: @client.id
       expect(response).to render_template :show
     end
   end
@@ -36,12 +40,12 @@ describe WorksController do
   describe 'GET #new' do
     it "assigns a new work to @work" do
       login_with create(:user)
-      get :new
+      get :new, client_id: @client.id
       expect(assigns(:work)).to be_a_new(Work)
     end
     it "renders the :new template" do
       login_with create(:user)
-      get :new
+      get :new, client_id: @client.id
       expect(response).to render_template :new
     end
     it "only shows current user's services"
@@ -50,30 +54,34 @@ describe WorksController do
   describe 'GET #edit' do
     it "assigns the requested work to @work" do
       login_with create(:user)
-      work = create(:work)
-      get :edit, id: work
-      expect(assigns(:work)).to eq work
+      #work = create(:work)
+      get :edit, { client_id: @client.id, id: @work }
+      expect(assigns(:work)).to eq @work
     end
     it "renders the :edit template" do
       login_with create(:user)
-      work = create(:work)
-      get :edit, id: work
+      get :edit, { client_id: @client.id, id: @work }
       expect(response).to render_template :edit
     end
   end
 
   describe 'POST #create' do
     context "with valid attributes" do
+    before :each do
+      @work_attributes = attributes_for(:work, client_id: @client)
+      @work_invalid = attributes_for(:invalid_work, client_id: @client)
+    end
       it "saves the new work in the database" do
         login_with create(:user)
         expect{
-          post :create, work: attributes_for(:work)
+          post :create, client_id: @client, work: @work_attributes
         }.to change(Work, :count).by(1)
       end
       it "redirects to works#show" do
+        work_attributes = attributes_for(:work, client_id: @client)
         login_with create(:user)
-        post :create, work: attributes_for(:work)
-        expect(response).to redirect_to work_path(assigns[:work])
+        post :create, work: work_attributes, client_id: @client
+        expect(response).to redirect_to client_work_path(@work.client, @work)
       end
     end
     context "with invalid attributes" do
@@ -96,7 +104,8 @@ describe WorksController do
   describe 'PATCH #update' do
     before :each do
       @work = create(:work,
-        title: 'Bro and Bro, Inc.')
+        title: 'Bro and Bro, Inc.',
+        client: @client)
       login_with create(:user)
     end
     context "with valid attributes" do
@@ -134,17 +143,16 @@ describe WorksController do
 
   describe 'DELETE #destroy' do
     before :each do
-      @work = create(:work)
       login_with create(:user)
     end
     it "deletes the work" do
       expect{
-        delete :destroy, id: @work
+        delete :destroy, { client_id: @client.id, id: @work }
       }.to change(Work, :count).by(-1)
     end
     it "redirects to users#index" do
-      delete :destroy, id: @work
-      expect(response).to redirect_to works_url
+      delete :destroy, { client_id: @client.id, id: @work }
+      expect(response).to redirect_to client_works_url
     end
   end
 end
