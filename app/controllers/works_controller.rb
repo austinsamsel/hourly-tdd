@@ -9,8 +9,10 @@ class WorksController < ApplicationController
 
   before_action :authenticate_user!
 
+  before_filter :require_permission, except: [:index, :new, :create]
+  before_filter :index_permission, only: [:index, :new]
+
   def index
-    
     @works = @client.works
     respond_with(@works)
   end
@@ -35,6 +37,7 @@ class WorksController < ApplicationController
 
   def create
     @work = @client.works.build(work_params)
+    @work.user_id = current_user.id
     @work.save
     respond_with(@work.client, @work)
   end
@@ -56,7 +59,7 @@ class WorksController < ApplicationController
     end
 
     def work_params
-      params.require(:work).permit(:start_time, :end_time, :title, :description, :billed, :client_id)
+      params.require(:work).permit(:start_time, :end_time, :title, :description, :billed, :client_id, :user_id)
     end
 
     def load_clients
@@ -65,6 +68,20 @@ class WorksController < ApplicationController
 
     def find_client
       @client = Client.find(params[:client_id])
+    end
+
+    def require_permission
+      if current_user != Work.find(params[:id]).user
+        redirect_to root_path
+        #Or do something else here
+      end
+    end
+
+    def index_permission
+      if current_user != Client.find(params[:client_id]).user
+        redirect_to root_path
+        #Or do something else here
+      end
     end
 
 end
