@@ -17,6 +17,11 @@ class WorksController < ApplicationController
 
   def show
     respond_with(@work)
+    # @work = @client.works.find(params[:id])
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.xml  { render :xml => @work }
+    # end
   end
 
   def new
@@ -29,13 +34,14 @@ class WorksController < ApplicationController
   end
 
   def create
-    @work = @client.works.create(work_params)
+    @work = @client.works.build(work_params)
     @work.save
     respond_with(@work.client, @work)
   end
 
   def update
     @work = @client.works.find(params[:id])
+    @work.update(work_params)
     respond_with(@work.client, @work)
   end
 

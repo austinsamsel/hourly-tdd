@@ -10,6 +10,7 @@ FactoryGirl.define do
 
     factory :invalid_work do
       start_time nil
+      title nil
     end
   end
 
