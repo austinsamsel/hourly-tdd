@@ -37,7 +37,6 @@ class WorksController < ApplicationController
 
   def create
     @work = @client.works.build(work_params)
-    @work.user_id = current_user.id
     @work.save
     respond_with(@work.client, @work)
   end
