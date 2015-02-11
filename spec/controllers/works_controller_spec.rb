@@ -92,12 +92,12 @@ describe WorksController do
   #####
       it "redirects to works#show" do
         login_with create(:user)
+        @client_id = @client.id
         work = attributes_for(:work)
-        post :create, work: work, client_id: @client
-        #expect(response).to redirect_to client_work_path(@work.client, @work)
-        #expect(response).to render_template :show
-        #expect(response).to redirect_to client_work_path(@work.client, @work)
-        expect(response).to render_template :show
+        post :create, 
+          work: attributes_for(:work), client_id: @client
+        #expect(response).to redirect_to(assigns(:work))
+        #expect(response).to redirect_to(client_work_path(@work, @client_id))
       end
     end
     context "with invalid attributes" do
