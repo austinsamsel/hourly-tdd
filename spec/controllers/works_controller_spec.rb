@@ -78,9 +78,8 @@ describe WorksController do
         }.to change(Work, :count).by(1)
       end
       it "redirects to works#show" do
-        work_attributes = attributes_for(:work, client_id: @client)
         login_with create(:user)
-        post :create, work: work_attributes, client_id: @client
+        post :create, work: attributes_for(:work), client_id: @client
         expect(response).to redirect_to client_work_path(@work.client, @work)
       end
     end
@@ -89,13 +88,13 @@ describe WorksController do
         login_with create(:user)
         expect{
           post :create,
-          work: attributes_for(:invalid_work)
+          work: attributes_for(:invalid_work), client_id: @client
         }.not_to change(Work, :count)
       end
       it "re-renders the :new template" do
         login_with create(:user)
         post :create,
-          work: attributes_for(:invalid_work)
+          work: attributes_for(:invalid_work), client_id: @client
         expect(response).to render_template :new
       end
     end
@@ -110,33 +109,34 @@ describe WorksController do
     end
     context "with valid attributes" do
       it "locates the requested @work" do
-        patch :update, id: @work, work: attributes_for(:work)
+        patch :update, id: @work, client_id: @client, 
+          work: attributes_for(:work, client_id: @client)
         expect(assigns(:work)).to eq(@work)
       end
       it "changes @work's attributes" do
-        patch :update, id: @work,
+        patch :update, client_id: @client, id: @work, 
           work: attributes_for(:work,
-            title: 'The Bros, Inc.')
+            title: 'The Bros, Inc.'), client_id: @client
         @work.reload
         expect(@work.title).to eq('The Bros, Inc.')
       end
       it "redirects to the updated work" do
-        patch :update, id: @work, work: attributes_for(:work)
-        expect(response).to redirect_to @work
+        patch :update, client_id: @client, id: @work, work: attributes_for(:work)
+        expect(response).to redirect_to [@work.client, @work]
       end
     end
     context "with invalid attributes" do
       it "does not change the work's attributes" do
-        patch :update, id: @work,
+        patch :update, client_id: @client, id: @work,
           work: attributes_for(:work,
             title: nil)
         @work.reload
         expect(@work.title).not_to eq(nil)
       end
       it "re-renders the :edit template" do
-        patch :update, id: @work,
-          work: attributes_for(:invalid_work)
-        expect(response).to render_template :edit
+        patch :update, client_id: @client, id: @work,
+          work: attributes_for(:invalid_work), client_id: @client
+        expect(response).to render_template(:edit)
       end
     end
   end
