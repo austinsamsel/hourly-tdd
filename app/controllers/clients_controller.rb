@@ -7,7 +7,8 @@ class ClientsController < ApplicationController
   respond_to :html
 
   before_action :authenticate_user!
-  before_filter :require_permission, only: [:edit, :new, :show, :create, :update, :destroy]
+  
+  before_filter :require_permission, except: [:index, :new, :create]
 
   def index
     #@clients = Client.all

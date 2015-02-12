@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :client do
     name { Faker::Company.name }
-    user_id {rand(1..10)}
+    user_id 1
     
     factory :invalid_client do
       name " "

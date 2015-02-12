@@ -97,7 +97,7 @@ describe WorksController do
         post :create, 
           work: attributes_for(:work), client_id: @client
         #expect(response).to redirect_to(assigns(:work))
-        #expect(response).to redirect_to(client_work_path(@work, @client_id))
+        expect(response).to redirect_to(client_work_path(@work, @client_id))
       end
     end
     context "with invalid attributes" do
