@@ -12,8 +12,9 @@ describe WorksController do
       #   expect(assigns(:works)).to match_array([smith])
       # end
       it "renders the :index template" do
+        @client = create(:client) 
         login_with create( :user )
-        get :index
+        get :index, client_id: @client.id
         expect(response).to render_template :index
       end
     end

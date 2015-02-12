@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :works
+  resources :works, except: [:index, :new]
 
-  resources :clients
+  resources :clients do
+    resources :works, only: [:index, :new]
+  end
 
   devise_for :users
 

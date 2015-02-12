@@ -7,6 +7,8 @@ class ClientsController < ApplicationController
 
   before_action :authenticate_user!
 
+  before_filter :require_permission, except: [:index, :new, :create]
+
   def index
     #@clients = Client.all
     @clients = current_user.clients
@@ -49,6 +51,13 @@ class ClientsController < ApplicationController
 
     def client_params
       params.require(:client).permit(:name, :user_id)
+    end
+
+    def require_permission
+      if current_user != Client.find(params[:id]).user
+        redirect_to root_path
+        #Or do something else here
+      end
     end
 
     # def load_work
