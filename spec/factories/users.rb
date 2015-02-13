@@ -11,7 +11,7 @@ FactoryGirl.define do
     password_confirmation '12345678'
     id 1
 
-    factory :another_guy do
+    factory :alt do
       id 2
     end
   end

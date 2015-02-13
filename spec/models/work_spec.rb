@@ -7,6 +7,11 @@ RSpec.describe Work, :type => :model do
   it "is valid with a title" do
     expect(build(:work)).to be_valid
   end
+  it "is valid without an end time" do
+    work = build(:work, end_time: nil)
+    work.valid?
+    expect(build(:work)).to be_valid
+  end
   it "is invalid without a title" do
     work = build(:work, title: ' ')
     work.valid?

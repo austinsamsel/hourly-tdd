@@ -10,7 +10,7 @@ class WorksController < ApplicationController
   before_action :authenticate_user!
 
   before_filter :require_permission, except: [:index, :new, :create]
-  before_filter :index_permission, only: [:index, :new]
+  before_filter :index_permission, only: [:index, :new, :create]
 
   def index
     @works = @client.works
@@ -70,7 +70,7 @@ class WorksController < ApplicationController
     end
 
     def require_permission
-      if current_user != Work.find(params[:id]).user
+      if current_user != Work.find(params[:id]).client.user
         redirect_to root_path
         #Or do something else here
       end
