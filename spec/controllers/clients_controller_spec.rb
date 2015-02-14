@@ -205,4 +205,66 @@ describe ClientsController do
     end
   end
 
+  # ALTERNATE USER
+  describe "guest user" do
+    before :each do
+      # This simulates an anonymous user
+      login_with :alt
+    end
+
+    describe "GET #new" do
+      # it "redirects to root" do
+      #   get :new
+      #   expect(response).to redirect_to root_url
+      # end
+    end
+
+    describe "GET #edit" do
+      it "redirects to root" do
+        client = create(:client)
+        get :edit, id: client
+        expect(response).to redirect_to root_url
+      end
+    end
+
+    describe "GET #create" do
+      # it "redirects to root" do
+      #   post :create, id: create(:client, user_id: 1),
+      #     client: attributes_for(:client)
+      #   expect(response).to redirect_to root_url
+      # end
+    end
+
+    describe "GET #update" do
+      it "redirects to root" do
+        patch :create, id: create(:client, user_id: 1),
+          client: attributes_for(:client)
+        expect(response).to redirect_to root_url
+      end
+    end
+
+    describe "GET #destroy" do
+      it "redirects to root" do
+        delete :destroy, id: create(:client)
+        expect(response).to redirect_to root_url
+      end
+    end
+
+    describe "GET #index" do
+      # it "redirects to root" do
+      #   get :index
+      #   expect(response).to redirect_to root_url
+      # end
+    end
+
+    describe "GET #show" do
+      it "redirects to root" do
+        get :show, id: create(:client)
+        expect(response).to redirect_to root_url
+      end
+    end
+  end
+
+
+
 end
