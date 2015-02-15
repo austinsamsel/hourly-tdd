@@ -1,4 +1,4 @@
-<%= form_for([@work.client, @work]) do |f| %>
+<%= bootstrap_form_for([@work.client, @work]) do |f| %>
   <% if @work.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@work.errors.count, "error") %> prohibited this work from being saved:</h2>
@@ -12,28 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%# f.label :client %><br>
     <%# f.select :client_id, @clients %>
   </div>
 
   <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+    <%= f.text_field :start_time, class: "datetimepicker9" %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.text_field :end_time, class: "datetimepicker9" %>
   </div>
   <div class="field">
-    <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :billed %><br>
     <%= f.check_box :billed %>
   </div>
   <div class="actions">

@@ -6,6 +6,9 @@ gem 'rails_12factor'
 gem 'validates_timeliness', '~> 3.0'
 gem 'time_diff', '~> 0.3.0'
 
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'bootstrap_form', '~> 2.2'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use sqlite3 as the database for Active Record

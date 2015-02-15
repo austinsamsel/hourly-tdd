@@ -2,7 +2,11 @@
 
 <h1>Listing Works</h1>
 
-<table>
+<%= link_to 'New Work',  new_client_work_path %>
+<br>
+
+<div class="table-responsive">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Start time</th>
@@ -17,19 +21,16 @@
   <tbody>
     <% @works.each do |work| %>
       <tr>
-        <td><%= work.start_time %></td>
-        <td><%= work.end_time %></td>
+        <td><%= work.start_time.strftime("%m/%d/%Y @ %I:%M%p") %></td>
+        <td><%= work.end_time.strftime("%m/%d/%Y @ %I:%M%p") %></td>
         <td><%= work.title %></td>
         <td><%= work.description %></td>
         <td><%= work.billed %></td>
-        <td><%= link_to 'Show', [work.client, work] %></td>
+        <!--<td><%# link_to 'Show', [work.client, work] %></td>-->
         <td><%= link_to 'Edit', edit_client_work_path(work.client, work) %></td>
         <td><%= link_to 'Destroy', [work.client, work], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Work',  new_client_work_path %>
+</div>

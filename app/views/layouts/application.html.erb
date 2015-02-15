@@ -8,7 +8,45 @@
 </head>
 <body>
 
-<%= yield %>
+  <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="./" class="navbar-brand"><%= link_to "hourly", root_path, id: "logo" %></a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="">clients</a><%# link_to "Home",    root_path %></li>
+        <li><a href="">works</a><%# link_to "About",   about_path %></li>
+        <li><a href="">sign out</a><%# link_to "Log in", '#' %></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
+<div class="container main-content">
+  <%= yield %>
+</div>
+
+
+    <script type="text/javascript">
+      $('.datetimepicker9').datetimepicker({
+        step:15,
+        // formatTime:'g:i a',
+        //mask:true,
+        // format:'m/d/Y g:i a',
+        minDate:0,
+
+        formatTime:'g:i a'
+
+        // disabledDates: ['12.02.2014 10:30','12.08.2014 11:00'], 
+        // formatDate:'m.d.Y H:i'
+      });
+    </script>
 </body>
 </html>
