@@ -16,10 +16,10 @@
   </div>
 
   <div class="field">
-    <%= f.text_field :start_time, class: "datetimepicker9" %>
+    <%= f.text_field :start_time, class: "datetimepicker1" %>
   </div>
   <div class="field">
-    <%= f.text_field :end_time, class: "datetimepicker9" %>
+    <%= f.text_field :end_time, class: "datetimepicker1" %>
   </div>
   <div class="field">
     <%= f.text_field :title %>
@@ -31,6 +31,6 @@
     <%= f.check_box :billed %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-lg btn-primary btn-block" %>
   </div>
 <% end %>

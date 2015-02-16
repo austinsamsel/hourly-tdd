@@ -40,14 +40,18 @@
 
 
     <script type="text/javascript">
-      $('.datetimepicker9').datetimepicker({
+      $('.datetimepicker1').datetimepicker({
         step:15,
         // formatTime:'g:i a',
         //mask:true,
         // format:'m/d/Y g:i a',
         minDate:0,
-
-        formatTime:'g:i a'
+        formatTime:'g:i a',
+       // theme:'dark',
+        mask:true,
+        format:'Y/m/d g:i a',
+        validateOnBlur:false,
+        formatTimeScroller: 'g:i a' /*uppercase AM/PM now*/
 
         // disabledDates: ['12.02.2014 10:30','12.08.2014 11:00'], 
         // formatDate:'m.d.Y H:i'
