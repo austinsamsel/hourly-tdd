@@ -60,7 +60,7 @@ text-decoration: underline;
   padding: 20px 8px !important;
 }
 
-h1{
+h1, h2{
   color:lightsalmon !important;
 }
 .table > tbody > tr > td  > h2 > a,
@@ -102,7 +102,10 @@ td{
 }
 .link-action{
   text-transform: uppercase;
-  margin-top:40px;
+  margin:40px 0;
+}
+.actions {
+  text-transform: uppercase;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
