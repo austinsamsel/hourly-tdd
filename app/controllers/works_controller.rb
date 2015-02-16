@@ -13,7 +13,8 @@ class WorksController < ApplicationController
   before_filter :index_permission, only: [:index, :new, :create]
 
   def index
-    @works = @client.works
+    @works = @client.works.paginate(:page => params[:page], :per_page => 50)
+    #@total_billed = Work.where(billed: true).time_elapsed.sum
     respond_with(@works)
   end
 

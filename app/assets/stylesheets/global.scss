@@ -1,15 +1,35 @@
+/* general */
+
+html, body, .main-content{
+  color:#fff;
+  background:#333;
+}
+.container{
+  width: 100% !important;
+}
+
+
+a, a:visited {
+color: cyan !important;
+text-decoration: none;
+}
+a:hover, a:focus {
+color: magenta !important;
+text-decoration: underline;
+}
+
 /* header */
 
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 2.3em;
-  color: white;
+  color: mediumpurple !important;
   text-transform: lowercase;
   letter-spacing: -1px;
   font-weight: bold;
   &:hover {
-    color: white;
+    color: white !important;
     text-decoration: none;
   }
 }
@@ -23,4 +43,81 @@
 
 .main-content{
   margin-top:70px;
+}
+
+/* tables */
+
+.header-link{
+  font-size:.5em;
+}
+.faded {
+  opacity:0.4;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle !important;
+  padding: 20px 8px !important;
+}
+
+h1{
+  color:lightsalmon !important;
+}
+.table > tbody > tr > td  > h2 > a,
+.table > tbody > tr > td  > h3 > a {
+  color: lightsalmon !important; 
+}
+.table > tbody > tr > td  > h2 > a:hover,
+.table > tbody > tr > td  > h3 > a:hover {
+  color: magenta !important;
+}
+.table > tbody > tr > td  > h2,
+.table > tbody > tr > td  > h3 {
+  margin-top:0;
+}
+tr{
+  border: 5px solid mediumpurple;
+}
+td{
+ border-right: 5px solid springgreen;
+}
+
+.billed-yet{
+  color: springgreen;
+}
+.startend{
+  color:#999;
+  text-transform: uppercase;
+  font-size:.85em;
+}
+
+.hours{
+ // background-color:mediumpurple;
+  }
+.hours-text{
+  font-size:2em;
+}
+.dollars{
+ // background-color:springgreen;
+}
+.actions{
+  text-transform: uppercase;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+background-color: #2a2a2a !important;
+}
+
+/* forms */
+.btn-block {
+  margin-bottom:30px !important;
+}
+.btn-primary{
+  background-color:springgreen !important;
+  border-color:transparent !important;
+}
+.btn-primary:hover{
+  background-color:powderblue !important;
+}
+.btn-primary:focus{
+  background-color:whitesmoke !important;
 }

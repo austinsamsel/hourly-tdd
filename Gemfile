@@ -8,6 +8,7 @@ gem 'time_diff', '~> 0.3.0'
 
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bootstrap_form', '~> 2.2'
+gem 'will_paginate-bootstrap', '~> 1.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'

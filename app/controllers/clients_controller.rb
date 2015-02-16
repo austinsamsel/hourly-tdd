@@ -12,7 +12,7 @@ class ClientsController < ApplicationController
 
   def index
     #@clients = Client.all
-    @clients = current_user.clients
+    @clients = current_user.clients.paginate(:page => params[:page], :per_page => 50)
     respond_with(@clients)
   end
 

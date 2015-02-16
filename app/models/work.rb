@@ -8,11 +8,32 @@ class Work < ActiveRecord::Base
   validates_datetime :end_time, after: :start_time
   default_scope -> { order(created_at: :desc) }
 
-  def hours_elapsed
-    a = Time.diff(start_time, end_time)
-    a[:hour]
+
+  def time_elapsed
+    elapsed = (start_time - end_time).to_i.abs
+    hours = elapsed / 3600.0
+    return hours.round(2)
   end
 
-  private
+  def money_dollars
+    if billed == true
+      return "$$$$$"
+    else
+      return "nope."
+    end
+  end
+
+  def faded
+    if billed == true
+      return "faded"
+    end
+  end
+
+  def total_billed
+    Work.where(billed: true).time_elapsed.sum
+  end
+
+  def time_unbilled
+  end
 
 end
