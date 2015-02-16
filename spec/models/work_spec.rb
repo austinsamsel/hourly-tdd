@@ -53,7 +53,7 @@ RSpec.describe Work, :type => :model do
     expect(work).to be_valid
   end
   it "is valid with hours elapsed" do
-    expect(build(:work).hours_elapsed).to eq 1
+    expect(build(:work).time_elapsed).to eq 1
   end
   it "has the recent posts listed first"
 end

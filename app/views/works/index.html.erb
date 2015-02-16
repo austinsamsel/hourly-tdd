@@ -27,7 +27,7 @@ Time billed: <%# total_billed %>
       <tr class="<%= work.faded %>">
         <td class="hours"> <span class="hours-text"><%= work.time_elapsed %></span><br><%= 'hour'.pluralize %> </td>
         <td>
-          <h3><%= link_to 'work.title', [work.client, work] %></h3>
+          <h2><%= link_to work.title, [work.client, work] %></h2>
           <%= work.description %>
         </td>
         <td class="dollars"><%= work.money_dollars %></td>

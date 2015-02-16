@@ -1,9 +1,10 @@
 <div class="col-sm-6 col-sm-offset-3">
 
-<h1>New Work</h1>
+<h1>Add Some Work</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', client_works_path(@work.client) %>
-
+<div class="link-action">
+&#62;<%= link_to 'Back', client_works_path(@work.client) %>
+</div>
 </div>

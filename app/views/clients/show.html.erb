@@ -1,9 +1,14 @@
+<div class="col-sm-6 col-sm-offset-3">
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @client.name %>
-</p>
+<h1>
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+  <%= @client.name %>
+</h1>
+
+<div class="link-action">
+&#62;<%= link_to 'Edit', edit_client_path(@client) %><br>
+&#62;<%= link_to 'Back', clients_path %>
+</div>
+</div>

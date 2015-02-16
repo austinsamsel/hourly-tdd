@@ -23,10 +23,8 @@
   <span class="billed-yet">Billed?</span>
   <%= @work.money_dollars %>
 </p>
-<br>
-<br>
-<br>
-<div class="actions">
+
+<div class="link-action">
 &#62;<%= link_to 'Edit', edit_client_work_path(@work.client, @work) %> <br>
 &#62;<%= link_to 'Index', client_works_path(@work.client) %>
 </div>

@@ -3,6 +3,7 @@
 html, body, .main-content{
   color:#fff;
   background:#333;
+  font-family:helvetica, arial, sans-serif;
 }
 .container{
   width: 100% !important;
@@ -99,8 +100,9 @@ td{
 .dollars{
  // background-color:springgreen;
 }
-.actions{
+.link-action{
   text-transform: uppercase;
+  margin-top:40px;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
@@ -120,4 +122,9 @@ background-color: #2a2a2a !important;
 }
 .btn-primary:focus{
   background-color:whitesmoke !important;
+}
+input{
+  background-color:#ddd !important;
+  color:#000;
+  border:0px;
 }
